@@ -1,3 +1,20 @@
+## Отличие от официального SDK
+
+##### Исправлена ошибка при авторизации через приложение Twitter
+В стандартном SDK иногда при авторизации через приложение Twitter выводится вебвью с запросом логина и пароля. Это происходит даже в случае, когда пользователь авторизован в приложении Twitter. Проблема была решена добавлением задержки в 0,5 секунды перед вызовом метода verifyUserSession класса TWTRNetworkSessionProvider.
+
+##### Порядок действий при обновлении компонента
+1.  Сделать исправления в коде
+2.  Поднять версию компонента в файлах:
+   	Specs/AxTwitterKit/3.4.3/AxTwitterKit.podspec
+   	TwitterKit/TwitterKit-Info.plist
+   	TwitterKit/Config/Project.xcconfig
+   	TwitterKit/TwitterKit/Supporting Files/TWTRConstants_Private.m
+3. 	Собрать файл TwitterKit.framework c помощью скрипта build.sh в корне репозитория
+4. 	Обновить podspec файл с помощью команды pod repo push altarix-twitter-kit AxTwitterKit.podspec из каталога /altarix-		twitter-kit/Specs/AxTwitterKit/3.4.3/
+5.	Сделать новый релиз и загрузить в него собранный файл TwitterKit.framework
+6.	Обновить путь к AxTwitterKit.podspec в Podfile при необходимости
+
 **Twitter will be discontinuing support for Twitter Kit on October 31, 2018. [Read the blog post here](https://blog.twitter.com/developer/en_us/topics/tools/2018/discontinuing-support-for-twitter-kit-sdk.html).**
 
 # Twitter Kit for iOS
